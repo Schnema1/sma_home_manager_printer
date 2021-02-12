@@ -1,5 +1,28 @@
 # SMA Home Manager printer
 
+Many tanks to mitchese for this work. I did a copy to explain the installation process in more detail.
+
+
+In order to get your arm file for Victron Multiplus II GX:
+
+Tested on a Windows machine:
+1. Download and install go environment
+2. Check your env GOPATH=  (go env) and take note of the path. I added the \src Folder
+3. Download the files form mitchese
+4. In the file is a reference to https://github.com/dmichael/go-multicast 
+4.1 Download this repo too and copy it in your GOPATH /src folder.  --> C:\Users\"yourusername"\go\src\go-multicast-master
+5. You now have to adjust the import folder for go-multicast-master. In my case the GOPATH=C:\Users\"yourusername"\go and I had to modify C:\Users\"yourusername"\go\src\go-multicast-master\main.go file. In import section (line 13) i corrected the path as follow: "go-multicast-master/multicast".
+6. You now modify the sma_home_manager_printer part the same way. In my case again 	"go-multicast-master/multicast".
+7. Finally you can build your file.Open a command promt and move to the downloaded and previously modified file sma_home_manager_printer.go. Compile it with: go build -o sma_home_manager_printer.armv7
+
+
+
+This file is not in the repository. Instead it's a .go file. So I downloaded go language bud I can not build the file. 
+sma_home_manager_printer.go:9:2: cannot find package "github.com/dmichael/go-multicast/multicast" in any of:
+        C:\Program Files\Go\src\github.com\dmichael\go-multicast\multicast (from $GOROOT)
+        C:\Users\*****\go\src\github.com\dmichael\go-multicast\multicast (from $GOPATH)
+
+
 This simple program prints the values of the [SMA Home Manager](https://www.sma.de/en/products/monitoring-control/sunny-home-manager-20.html)
 
 I wrote this as an initial test before implementing a fake ET340 in a Victron system. Use this at your own risk, I have
