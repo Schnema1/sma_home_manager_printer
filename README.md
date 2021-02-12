@@ -2,10 +2,16 @@
 
 Many tanks to mitchese for this work. I did a copy to explain the installation process in more detail.
 
+This simple program prints the values of the [SMA Home Manager](https://www.sma.de/en/products/monitoring-control/sunny-home-manager-20.html)
 
-In order to get your arm file for Victron Multiplus II GX:
+I wrote this as an initial test before implementing a fake ET340 in a Victron system. Use this at your own risk, I have
+no association with Victron but am providing this for anyone who already has an SMA Home Manager (and no room left in their fuse box for a further meter)
 
-Tested on a Windows machine:
+
+# Prepare
+
+In order to get your arm file for Victron Multiplus II GX you need to compile the file. I have done this on a Windows machine. Follow these steps in order to get your armv7 file.
+
 1. Download and install go environment
 2. Check your env GOPATH=  (go env) and take note of the path. I added the \src Folder
 3. Download the files form mitchese
@@ -15,18 +21,21 @@ Tested on a Windows machine:
 6. You now modify the sma_home_manager_printer part the same way. In my case again 	"go-multicast-master/multicast".
 7. Finally you can build your file.Open a command promt and move to the downloaded and previously modified file sma_home_manager_printer.go. Compile it with: go build -o sma_home_manager_printer.armv7
 
+Now you need to prepare your Multiplus:
 
+1. Switch on the Multiplus and connect the ethernet port to a router or a network switch. I had a switch only.
+2. the IP address wil be printed on the screen of the Multiplus. Remember it runs his own DHCP Server. 
+3. Open a browser window and insert the IP Address of the Multiplus.
+4. You will land on the mainpage. Use your keybaord cursors to navigate. Settings --> General --> Set root passwor. Do so and choos a strong password. Add it to your password manager. If you don't have it, its time to organize one.
+5. Set the Access Level to User and installer, the password is ZZZ
+6. Highlight Access Level (don't open the select page!)
+7. Press and hold the right curser of your keyboard until you see the Access Level change to Superuser.
+8. Go to Settings → General → Set root password. And create a root password. Note that, for firmware version v2.00 and later, the root password will be reset by a firmware update. The reason is that the passwd file is on the rootfs, which is fully replaced by an update.
+9. Finally you activate SSH.
+10. Install first, or if you have it already, open putty and connect to your Multiplus through SSH. You also can use MobaXterm is you like to have more copy paste style.
 
-This file is not in the repository. Instead it's a .go file. So I downloaded go language bud I can not build the file. 
-sma_home_manager_printer.go:9:2: cannot find package "github.com/dmichael/go-multicast/multicast" in any of:
-        C:\Program Files\Go\src\github.com\dmichael\go-multicast\multicast (from $GOROOT)
-        C:\Users\*****\go\src\github.com\dmichael\go-multicast\multicast (from $GOPATH)
+https://www.victronenergy.com/live/ccgx:root_access
 
-
-This simple program prints the values of the [SMA Home Manager](https://www.sma.de/en/products/monitoring-control/sunny-home-manager-20.html)
-
-I wrote this as an initial test before implementing a fake ET340 in a Victron system. Use this at your own risk, I have
-no association with Victron but am providing this for anyone who already has an SMA Home Manager (and no room left in their fuse box for a further meter)
 
 ## How it works
 
