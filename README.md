@@ -13,7 +13,7 @@ no association with Victron but am providing this for anyone who already has an 
 In order to get your arm file for Victron Multiplus II GX you need to compile the file. I have done this on a Windows machine. Follow these steps in order to get your armv7 file.
 
 1. Download and install go environment
-2. Check your env GOPATH=  (go env) and take note of the path. I added the \src Folder
+2. Check your env GOPATH=  (go env) and take note of the path. Set GOOS=linux GOARCH=arm
 3. Download the files form mitchese
 4. In the file is a reference to https://github.com/dmichael/go-multicast 
 4.1 Download this repo too and copy it in your GOPATH /src folder.  --> C:\Users\"yourusername"\go\src\go-multicast-master
